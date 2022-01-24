@@ -92,8 +92,8 @@ sudo service docker restart
 
 GitHub Actions 就是个好选择，我们可以利用提交 `issues` 来触发镜像仓库迁移的功能。
 
-`workflow` 的实现：[hub-mirror.yml](https://github.com/togettoyou/hub-mirror/blob/main/.github/workflows/hub-mirror.yml)
+`workflow` 的实现参考 [hub-mirror.yml](https://github.com/togettoyou/hub-mirror/blob/main/.github/workflows/hub-mirror.yml)
 
-实际的使用效果可以参考 [issues](https://github.com/togettoyou/hub-mirror/issues?q=is%3Aissue+is%3Aopen+label%3Ahub-mirror) 
+实际的使用效果参考 [issues](https://github.com/togettoyou/hub-mirror/issues?q=is%3Aissue+is%3Aopen+label%3Ahub-mirror) 
 
 只要执行最终输出的命令，就可以飞快的使用 Docker Hub 的加速器下载 `gcr.io` 或 `quay.io` 等镜像了。
