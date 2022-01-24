@@ -56,7 +56,7 @@ sudo service docker restart
 
 ![](https://gitee.com/togettoyou/picture/raw/master/2022-1-24/1642990777364-Snipaste_2022-01-24_09-28-51.gif)
 
-镜像仓库迁移的功能，我这里采用了 Go Docker SDK ，整体实现也比较简单，参考 https://github.com/togettoyou/hub-mirror/blob/main/main.go
+镜像仓库迁移的功能，我这里采用了 Go Docker SDK ，整体实现也比较简单，参考 [main.go](https://github.com/togettoyou/hub-mirror/blob/main/main.go)
 
 以需要转换的 `gcr.io/google-samples/microservices-demo/emailservice:v0.3.5` 为例，使用方式：
 
@@ -66,10 +66,8 @@ sudo service docker restart
 
 GitHub Actions 就是个好选择，我们可以利用提交 `issues` 来触发镜像仓库迁移的功能。
 
-`workflow` 的实现：https://github.com/togettoyou/hub-mirror/blob/main/.github/workflows/hub-mirror.yml
+`workflow` 的实现：[hub-mirror.yml](https://github.com/togettoyou/hub-mirror/blob/main/.github/workflows/hub-mirror.yml)
 
-实际的使用效果可以参考 issues ：
-
-![](https://gitee.com/togettoyou/picture/raw/master/2022-1-24/1642992658518-github.com_togettoyou_hub-mirror_issues_1_iPad-Air_.gif)
+实际的使用效果可以参考 [issues](https://github.com/togettoyou/hub-mirror/issues?q=is%3Aissue+is%3Aopen+label%3Ahub-mirror) ：
 
 只要执行最终输出的命令，就可以飞快的使用 Docker Hub 的加速器下载 `gcr.io` 或 `quay.io` 等镜像了。
