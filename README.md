@@ -21,7 +21,7 @@ go install github.com/togettoyou/hub-mirror@latest
 ```
 
 ```shell
-./hub-mirror --username=xxxxxx --password=xxxxxx --content='{ "hub-mirror": ["gcr.io/google-samples/microservices-demo/emailservice:v0.3.5"] }'
+hub-mirror --username=xxxxxx --password=xxxxxx --content='{ "hub-mirror": ["gcr.io/google-samples/microservices-demo/emailservice:v0.3.5"] }'
 ```
 
 # 教程
