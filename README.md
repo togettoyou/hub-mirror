@@ -1,5 +1,31 @@
 # hub-mirror
 
+# 使用
+
+## 1. 白嫖，直接提交 issues
+
+要求：严格按照模板规范提交，参考 [成功案例](https://github.com/togettoyou/hub-mirror/issues/1) ，[失败案例](https://github.com/togettoyou/hub-mirror/issues/2)
+
+限制：每次提交最多 11 个镜像地址
+
+我的个人 Docker 账号有每日镜像拉取限额，请勿滥用
+
+## 2. 自己动手，Fork 本项目，绑定你自己的 Docker 账号
+
+需要设置 `DOCKERHUB_USERNAME` 和 `DOCKERHUB_TOKEN` 两个 Secrets
+
+## 3. 已有魔法，本地使用
+
+```shell
+go install github.com/togettoyou/hub-mirror@latest
+```
+
+```shell
+./hub-mirror --username=xxxxxx --password=xxxxxx --content='{ "hub-mirror": ["gcr.io/google-samples/microservices-demo/emailservice:v0.3.5"] }'
+```
+
+# 教程
+
 教程首发微信公众号：【寻寻觅觅的Gopher】，欢迎关注
 
 ![微信公众号.png](https://cdn.nlark.com/yuque/0/2021/png/1077776/1628483947581-9a649b2f-a0bb-4ef4-879d-92ab6e9fddde.png)
@@ -68,6 +94,6 @@ GitHub Actions 就是个好选择，我们可以利用提交 `issues` 来触发�
 
 `workflow` 的实现：[hub-mirror.yml](https://github.com/togettoyou/hub-mirror/blob/main/.github/workflows/hub-mirror.yml)
 
-实际的使用效果可以参考 [issues](https://github.com/togettoyou/hub-mirror/issues?q=is%3Aissue+is%3Aopen+label%3Ahub-mirror) ：
+实际的使用效果可以参考 [issues](https://github.com/togettoyou/hub-mirror/issues?q=is%3Aissue+is%3Aopen+label%3Ahub-mirror) 
 
 只要执行最终输出的命令，就可以飞快的使用 Docker Hub 的加速器下载 `gcr.io` 或 `quay.io` 等镜像了。
