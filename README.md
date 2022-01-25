@@ -1,5 +1,7 @@
 # hub-mirror
 
+使用 docker.io 来提供（但不限于） gcr.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
+
 # 使用
 
 ## 1. 白嫖我的，点个 Star ，直接提交 issues
