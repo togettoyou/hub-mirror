@@ -20,6 +20,8 @@
 
 在 `Issues`-`Labels` 添加三个 label ：`hub-mirror`、`success`、`failure`
 
+最后在 `Actions` 里选择 `hub-mirror` ，在右边 `···` 菜单里选择 `Enable Workflow`
+
 ## 3. 已有魔法，本地使用
 
 ```shell
