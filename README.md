@@ -18,6 +18,8 @@
 
 在 `Settings`-`Secrets` 新建 `DOCKERHUB_USERNAME`（你的 Docker 用户名） 和 `DOCKERHUB_TOKEN`（你的 Docker 密码） 两个 Secrets
 
+在 `Issues`-`Labels` 添加三个 label ：`hub-mirror`、`success`、`failure`
+
 ## 3. 已有魔法，本地使用
 
 ```shell
