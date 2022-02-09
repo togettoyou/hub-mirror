@@ -34,9 +34,9 @@ hub-mirror --username=xxxxxx --password=xxxxxx --content='{ "hub-mirror": ["gcr.
 
 # 教程
 
-教程首发微信公众号：【寻寻觅觅的Gopher】，欢迎关注
+教程首发微信公众号：【SuperGopher】，欢迎关注
 
-![微信公众号.png](https://cdn.nlark.com/yuque/0/2021/png/1077776/1628483947581-9a649b2f-a0bb-4ef4-879d-92ab6e9fddde.png)
+![微信公众号.png](https://gitee.com/togettoyou/picture/raw/master/2022-2-9/1644374999459-weixin.jpg)
 
 目前常用的 Docker Registry 公开服务有：
 
