@@ -2,9 +2,13 @@
 
 使用 docker.io 来提供（但不限于） gcr.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
 
+# 为减少重复请求，合理利用资源，建议提前在 issues 搜索镜像是否已转换过
+
+示例：https://github.com/togettoyou/hub-mirror/issues?q=gcr.io%2Fgoogle-samples%2Fmicroservices-demo%2Femailservice%3Av0.3.5
+
 # 使用
 
-## 1. 白嫖我的，点个 Star ，直接提交 issues
+## ~~1. 白嫖我的，点个 Star ，直接提交 issues~~（目前本人 Docker 账号另有它用，本项目 Workflow 已关闭，建议使用方式 2 ）
 
 要求：严格按照模板规范提交，参考： [成功案例](https://github.com/togettoyou/hub-mirror/issues/1) ，[失败案例](https://github.com/togettoyou/hub-mirror/issues/2)
 
