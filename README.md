@@ -1,6 +1,6 @@
 # hub-mirror
 
-使用 docker.io 来提供（但不限于） gcr.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
+使用 docker.io或其他镜像服务 来提供（但不限于） gcr.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
 
 # 为减少重复请求，合理利用资源，建议提前在 issues 搜索镜像是否已转换过
 
@@ -16,11 +16,23 @@
 
 我的个人 Docker 账号有每日镜像拉取限额，请勿滥用
 
-## 2. 自己动手，Fork 本项目，开启 issues 并绑定你自己的 Docker 账号
+## 2. 自己动手，Fork 本项目，开启 issues 并绑定你自己的 DockerHub 账号或其他镜像服务账号
 
 开启 `Settings`-`Options`-`Features` 中的 `Issues` 功能
 
-在 `Settings`-`Secrets` 新建 `DOCKERHUB_USERNAME`（你的 Docker 用户名） 和 `DOCKERHUB_TOKEN`（你的 Docker 密码） 两个 Secrets
+- 如果要使用DockerHub的镜像服务
+
+    在 `Settings`-`Secrets` 新建 `DOCKER_USERNAME`（你的 Docker 用户名） 和 `DOCKER_TOKEN`（你的 Docker 密码） 两个 Secrets
+    
+- 如果需要使用其他镜像服务,例如腾讯云,阿里云
+
+    在 `Settings`-`Secrets` 新建 `DOCKER_USERNAME`（你的 其他镜像服务 用户名） 和 `DOCKER_TOKEN`（你的 其他镜像服务 密码）以及 `DOCKER_REPOSITORY` 三个 Secrets
+
+    `DOCKER_REPOSITORY`配置例子 
+    
+    - 腾讯云:`ccr.ccs.tencentyun.com/xxxxxx`
+    - 阿里云:`registry.cn-hangzhou.aliyuncs.com/xxxxxx`
+    - 其他云...
 
 在 `Issues`-`Labels` 添加三个 label ：`hub-mirror`、`success`、`failure`
 
@@ -29,11 +41,13 @@
 ## 3. 已有魔法，本地使用
 
 ```shell
-go install github.com/togettoyou/hub-mirror@latest
+$ go install github.com/togettoyou/hub-mirror@latest
 ```
 
 ```shell
-hub-mirror --username=xxxxxx --password=xxxxxx --content='{ "hub-mirror": ["gcr.io/google-samples/microservices-demo/emailservice:v0.3.5"] }'
+$ hub-mirror --username=xxxxxx --password=xxxxxx --content='{ "hub-mirror": ["gcr.io/google-samples/microservices-demo/emailservice:v0.3.5","hello-world:latest"] }'
+# 如果需要使用自定义镜像仓库
+$ hub-mirror --username=xxxxxx --password=xxxxxx --repository=registry.cn-hangzhou.aliyuncs.com/xxxxxx --content='{ "hub-mirror": ["gcr.io/google-samples/microservices-demo/emailservice:v0.3.5","hello-world:latest"] }'
 ```
 
 # 教程

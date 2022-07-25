@@ -22,6 +22,7 @@ var (
 	username   = pflag.StringP("username", "", "", "docker hub 用户名")
 	password   = pflag.StringP("password", "", "", "docker hub 密码")
 	outputPath = pflag.StringP("outputPath", "", "output.sh", "结果输出路径")
+	repository = pflag.StringP("repository", "", "", "仓库地址,如果为空,默认推到dockerHub")
 )
 
 func main() {
@@ -53,6 +54,7 @@ func main() {
 	authConfig := types.AuthConfig{
 		Username: *username,
 		Password: *password,
+		ServerAddress: *repository,
 	}
 	encodedJSON, err := json.Marshal(authConfig)
 	if err != nil {
@@ -68,6 +70,7 @@ func main() {
 	output := make([]struct {
 		Source string
 		Target string
+		Repository string
 	}, 0)
 
 	wg := sync.WaitGroup{}
@@ -76,11 +79,17 @@ func main() {
 		if source == "" {
 			continue
 		}
-
-		target := *username + "/" + strings.ReplaceAll(source, "/", ".")
+		var target string
+		// 如果为空,默认推送到 DockerHub 用户名 下
+		// 如果指定了值,则推动到指定的仓库下,用户名不一定与repository后缀相同
+		if *repository == "" {
+			target = *username + "/" + strings.ReplaceAll(source, "/", ".")
+		} else {
+			target = *repository + "/" + strings.ReplaceAll(source, "/", ".")
+		}
 
 		wg.Add(1)
-		go func(source, target string) {
+		go func(source, target, repository string) {
 			defer wg.Done()
 
 			fmt.Println("开始转换", source, "=>", target)
@@ -113,9 +122,10 @@ func main() {
 			output = append(output, struct {
 				Source string
 				Target string
-			}{Source: source, Target: target})
+				Repository string
+			}{Source: source, Target: target, Repository: repository})
 			fmt.Println("转换成功", source, "=>", target)
-		}(source, target)
+		}(source, target, *repository)
 	}
 
 	wg.Wait()
@@ -125,7 +135,11 @@ func main() {
 	}
 
 	tmpl, err := template.New("pull_images").Parse(`{{- range . -}}
-
+	
+{{if .Repository}}
+# if your repository is private,please login...
+# docker login {{ .Repository }} --username={your username}
+{{end}}	
 docker pull {{ .Target }}
 docker tag {{ .Target }} {{ .Source }}
 
