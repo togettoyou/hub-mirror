@@ -1,6 +1,6 @@
 # hub-mirror
 
-使用 docker.io或其他镜像服务 来提供（但不限于） gcr.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
+使用 docker.io 或其他镜像服务来提供（但不限于） gcr.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
 
 # 为减少重复请求，合理利用资源，建议提前在 issues 搜索镜像是否已转换过
 
@@ -14,7 +14,7 @@
 
 限制：每次提交最多 11 个镜像地址
 
-我的个人 Docker 账号有每日镜像拉取限额，请勿滥用
+个人 Docker 账号有每日镜像拉取限额，请勿滥用
 
 ## 2. 自己动手，Fork 本项目，开启 issues 并绑定你自己的 DockerHub 账号或其他镜像服务账号
 
@@ -26,12 +26,12 @@
     
 - 如果需要使用其他镜像服务,例如腾讯云,阿里云
 
-    在 `Settings`-`Secrets` 新建 `DOCKER_USERNAME`（你的 其他镜像服务 用户名） 和 `DOCKER_TOKEN`（你的 其他镜像服务 密码）以及 `DOCKER_REPOSITORY` 三个 Secrets
+    在 `Settings`-`Secrets` 新建 `DOCKER_USERNAME`（你的其他镜像服务用户名） 和 `DOCKER_TOKEN`（你的其他镜像服务密码）以及 `DOCKER_REPOSITORY` 三个 Secrets
 
     `DOCKER_REPOSITORY`配置例子 
     
-    - 腾讯云:`ccr.ccs.tencentyun.com/xxxxxx`
-    - 阿里云:`registry.cn-hangzhou.aliyuncs.com/xxxxxx`
+    - 腾讯云: `ccr.ccs.tencentyun.com/xxxxxx`
+    - 阿里云: `registry.cn-hangzhou.aliyuncs.com/xxxxxx`
     - 其他云...
 
 在 `Issues`-`Labels` 添加三个 label ：`hub-mirror`、`success`、`failure`
