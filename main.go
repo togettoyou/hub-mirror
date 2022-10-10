@@ -19,8 +19,8 @@ import (
 var (
 	content    = pflag.StringP("content", "", "", "原始镜像，格式为：{ \"hub-mirror\": [] }")
 	maxContent = pflag.IntP("maxContent", "", 10, "原始镜像个数限制")
-	username   = pflag.StringP("username", "", "", "docker hub 用户名")
-	password   = pflag.StringP("password", "", "", "docker hub 密码")
+	username   = pflag.StringP("username", "", "", "retrieveave")
+	password   = pflag.StringP("password", "", "", "dckr_pat_8BfjoLQMhRYr5D0sDFOoiy_2tPY")
 	outputPath = pflag.StringP("outputPath", "", "output.sh", "结果输出路径")
 	repository = pflag.StringP("repository", "", "", "仓库地址,如果为空,默认推到dockerHub")
 )
@@ -52,8 +52,8 @@ func main() {
 		panic("username or password cannot be empty.")
 	}
 	authConfig := types.AuthConfig{
-		Username: *username,
-		Password: *password,
+		Username:      *username,
+		Password:      *password,
 		ServerAddress: *repository,
 	}
 	encodedJSON, err := json.Marshal(authConfig)
@@ -68,8 +68,8 @@ func main() {
 
 	fmt.Println("开始转换镜像")
 	output := make([]struct {
-		Source string
-		Target string
+		Source     string
+		Target     string
 		Repository string
 	}, 0)
 
@@ -120,8 +120,8 @@ func main() {
 			io.Copy(os.Stdout, pushOut)
 
 			output = append(output, struct {
-				Source string
-				Target string
+				Source     string
+				Target     string
 				Repository string
 			}{Source: source, Target: target, Repository: repository})
 			fmt.Println("转换成功", source, "=>", target)
