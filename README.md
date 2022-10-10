@@ -30,9 +30,9 @@
 
     `DOCKER_REPOSITORY`配置例子 
     
-    - 腾讯云: `ccr.ccs.tencentyun.com/xxxxxx`
-    - 阿里云: `registry.cn-hangzhou.aliyuncs.com/xxxxxx`
-    - 其他云...
+    -  腾讯云: `ccr.ccs.tencentyun.com/xxxxxx`
+    -  阿里云: `registry.cn-hangzhou.aliyuncs.com/xxxxxx`
+    -  其他云...
 
 在 `Issues`-`Labels` 添加三个 label ：`hub-mirror`、`success`、`failure`
 
