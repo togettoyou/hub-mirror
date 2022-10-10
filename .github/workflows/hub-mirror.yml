@@ -4,6 +4,8 @@ name: GitHub Actions Build to load docker images
 # 当新建 issues 时，触发当前 workflow
 on:
   issues:
+    branches:
+      - pushworkflow
     types:
       - opened
 
