@@ -1,5 +1,5 @@
 # workflow 名称
-name: hub-mirror
+name: GitHub Actions Build to load docker images
 
 # 当新建 issues 时，触发当前 workflow
 on:
@@ -7,13 +7,12 @@ on:
     branches:
       - pushworkflow
 
-
 # 需要执行的任务列表
 jobs:
   # 镜像转换任务
   mirror_transition:
     # 运行环境
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     # 运行条件 => issues 的 label 包含 hub-mirror
     if: contains(github.event.issue.labels.*.name, 'hub-mirror')
     # 镜像转换任务的步骤列表
