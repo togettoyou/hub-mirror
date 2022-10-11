@@ -39,7 +39,7 @@ https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw
       在 `Settings`-`Secrets`-`Actions` 选择 `New repository secret` 新建 `DOCKER_USERNAME`（你的其他镜像服务用户名）
       和 `DOCKER_TOKEN`（你的其他镜像服务密码）以及 `DOCKER_REPOSITORY` 三个 Secrets
 
-      其中 `DOCKER_REPOSITORY`配置例子：
+      其中 `DOCKER_REPOSITORY` 配置例子：
 
         - 腾讯云: `ccr.ccs.tencentyun.com/xxxxxx`
         - 阿里云: `registry.cn-hangzhou.aliyuncs.com/xxxxxx`
