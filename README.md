@@ -10,6 +10,10 @@
 
 https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw
 
+> 微信公众号：SuperGopher
+> 
+> go、云原生技术、项目问题、联系我 ...... 欢迎关注，来者不拒
+
 # 开始使用
 
 ## 方案一：白嫖我的，点个 Star ，直接提交 issues
@@ -35,7 +39,7 @@ https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw
       在 `Settings`-`Secrets`-`Actions` 选择 `New repository secret` 新建 `DOCKER_USERNAME`（你的其他镜像服务用户名）
       和 `DOCKER_TOKEN`（你的其他镜像服务密码）以及 `DOCKER_REPOSITORY` 三个 Secrets
 
-      `DOCKER_REPOSITORY`配置例子
+      其中 `DOCKER_REPOSITORY`配置例子：
 
         - 腾讯云: `ccr.ccs.tencentyun.com/xxxxxx`
         - 阿里云: `registry.cn-hangzhou.aliyuncs.com/xxxxxx`
