@@ -52,8 +52,8 @@ func main() {
 		panic("username or password cannot be empty.")
 	}
 	authConfig := types.AuthConfig{
-		Username: *username,
-		Password: *password,
+		Username:      *username,
+		Password:      *password,
 		ServerAddress: *repository,
 	}
 	encodedJSON, err := json.Marshal(authConfig)
@@ -68,8 +68,8 @@ func main() {
 
 	fmt.Println("开始转换镜像")
 	output := make([]struct {
-		Source string
-		Target string
+		Source     string
+		Target     string
 		Repository string
 	}, 0)
 
@@ -79,13 +79,22 @@ func main() {
 		if source == "" {
 			continue
 		}
-		var target string
+
+		target := source
+		// 查看是否配置自定义镜像名，如果配置的话使用自定义镜像名
+		if strings.Contains(source, "$") {
+			str1 := strings.Split(source, "$")
+			repository := strings.Split(str1[0], ":")
+			target = str1[1] + ":" + repository[len(repository)-1]
+			source = str1[0]
+		}
+
 		// 如果为空,默认推送到 DockerHub 用户名 下
 		// 如果指定了值,则推动到指定的仓库下,用户名不一定与repository后缀相同
 		if *repository == "" {
-			target = *username + "/" + strings.ReplaceAll(source, "/", ".")
+			target = *username + "/" + strings.ReplaceAll(target, "/", ".")
 		} else {
-			target = *repository + "/" + strings.ReplaceAll(source, "/", ".")
+			target = *repository + "/" + strings.ReplaceAll(target, "/", ".")
 		}
 
 		wg.Add(1)
@@ -120,8 +129,8 @@ func main() {
 			io.Copy(os.Stdout, pushOut)
 
 			output = append(output, struct {
-				Source string
-				Target string
+				Source     string
+				Target     string
 				Repository string
 			}{Source: source, Target: target, Repository: repository})
 			fmt.Println("转换成功", source, "=>", target)
