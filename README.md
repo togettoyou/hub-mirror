@@ -45,7 +45,7 @@ https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw
         - 阿里云: `registry.cn-hangzhou.aliyuncs.com/xxxxxx`
         - 等其他云...
 
-2. 在 Fork 的项目中开启 `Settings`-`Options`-`Features` 中的 `Issues` 功能
+2. 在 Fork 的项目中开启 `Settings`-`General`-`Features` 中的 `Issues` 功能
 
 3. 在 Fork 的项目中修改 `Settings`-`Actions`-`General` 中的 `Workflow permissions` 为 `Read and write permissions`
 
