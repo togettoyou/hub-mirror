@@ -45,11 +45,13 @@ https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw
         - 阿里云: `registry.cn-hangzhou.aliyuncs.com/xxxxxx`
         - 等其他云...
 
-2. 在 Fork 的项目中开启 `Settings`-`Options`-`Features` 中的 `Issues` 功能
+2. 在 Fork 的项目中开启 `Settings`-`General`-`Features` 中的 `Issues` 功能
 
-3. 在 `Issues`-`Labels` 选择 `New label` 依次添加三个 label ：`hub-mirror`、`success`、`failure`
+3. 在 Fork 的项目中修改 `Settings`-`Actions`-`General` 中的 `Workflow permissions` 为 `Read and write permissions`
 
-4. 在 `Actions` 里选择 `hub-mirror` ，在右边 `···` 菜单里选择 `Enable Workflow`
+4. 在 `Issues`-`Labels` 选择 `New label` 依次添加三个 label ：`hub-mirror`、`success`、`failure`
+
+5. 在 `Actions` 里选择 `hub-mirror` ，在右边 `···` 菜单里选择 `Enable Workflow`
 
 ## 方案三：已有魔法，支持本地使用
 
