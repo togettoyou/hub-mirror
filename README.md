@@ -1,6 +1,6 @@
 # hub-mirror
 
-使用 docker.io 或其他镜像服务来提供（但不限于） gcr.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
+使用 docker.io 或其他镜像服务来提供（但不限于） gcr.io、registry.k8s.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
 
 > 为减少重复请求，合理利用资源，建议提前在 issues 搜索镜像是否已转换过
 > 
