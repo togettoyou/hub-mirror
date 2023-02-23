@@ -2,17 +2,15 @@
 
 使用 docker.io 或其他镜像服务来提供（但不限于） gcr.io、registry.k8s.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
 
-> 为减少重复请求，合理利用资源，建议提前在 issues 搜索镜像是否已转换过
-> 
-> 示例：https://github.com/togettoyou/hub-mirror/issues?q=gcr.io%2Fgoogle-samples%2Fmicroservices-demo%2Femailservice%3Av0.3.5
+为减少重复请求，合理利用资源，建议提前在 issues 搜索镜像是否已转换过
+
+示例：[issues搜索gcr.io/google-samples/microservices-demo/emailservice:v0.3.5](https://github.com/togettoyou/hub-mirror/issues?q=gcr.io%2Fgoogle-samples%2Fmicroservices-demo%2Femailservice%3Av0.3.5)
 
 # 原理
 
-https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw
+[无法拉取 gcr.io 镜像？用魔法来打败魔法](https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw)
 
 > 微信公众号：SuperGopher
-> 
-> go、云原生技术、项目问题、联系我 ...... 欢迎关注，来者不拒
 
 # 开始使用
 
@@ -21,7 +19,7 @@ https://mp.weixin.qq.com/s/Vt0FRTx1PsoYFdLa0QZzWw
 要求：严格按照模板规范提交，参考： [成功案例](https://github.com/togettoyou/hub-mirror/issues/1)
 ，[失败案例](https://github.com/togettoyou/hub-mirror/issues/2)
 
-限制：每次提交最多 11 个镜像地址
+限制：每次提交最多 11 个镜像地址（为啥是11个？因为我的第一次需求刚好要转换11个镜像🤣）
 
 本人 Docker 账号有每日镜像拉取限额，请勿滥用
 
