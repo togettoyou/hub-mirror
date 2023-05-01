@@ -17,7 +17,9 @@
 ## 方案一：白嫖我的，点个 Star ，直接提交 issues
 
 要求：严格按照模板规范提交，参考： [成功案例](https://github.com/togettoyou/hub-mirror/issues/1)
-，[失败案例](https://github.com/togettoyou/hub-mirror/issues/2) 当issue失败时，可以查看job失败原因并修改issue主体内容，无需新建issue。
+，[失败案例](https://github.com/togettoyou/hub-mirror/issues/2)
+
+> 当任务失败时，可以查看具体失败原因并修改 issues 主体内容，无需新建 issues
 
 限制：每次提交最多 11 个镜像地址（为啥是11个？因为我的第一次需求刚好要转换11个镜像🤣）
 
