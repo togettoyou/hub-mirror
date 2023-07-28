@@ -62,6 +62,7 @@ func main() {
 
 			output, err := cli.PullTagPushImage(context.Background(), source)
 			if err != nil {
+				fmt.Println(source, "转换异常: ", err)
 				return
 			}
 

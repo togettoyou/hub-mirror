@@ -13,7 +13,6 @@ func TestSource2Target(t *testing.T) {
 	}
 
 	output, err := cli.Source2Target("")
-	assert.Nil(t, err)
 	assert.Nil(t, output)
 
 	source := "registry.k8s.io/kube-apiserver"

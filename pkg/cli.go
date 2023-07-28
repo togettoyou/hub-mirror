@@ -62,7 +62,7 @@ type Output struct {
 
 func (c *Cli) Source2Target(source string) (*Output, error) {
 	if source == "" {
-		return nil, nil
+		return nil, errors.New("source is nil")
 	}
 
 	target := source
@@ -111,7 +111,10 @@ func (c *Cli) PullTagPushImage(ctx context.Context, source string) (*Output, err
 		return nil, err
 	}
 
-	_, _ = io.Copy(os.Stdout, pullOut)
+	_, err = io.Copy(os.Stdout, pullOut)
+	if err != nil {
+		return nil, err
+	}
 
 	err = c.cli.ImageTag(ctx, output.Source, output.Target)
 	if err != nil {
@@ -130,7 +133,10 @@ func (c *Cli) PullTagPushImage(ctx context.Context, source string) (*Output, err
 		return nil, err
 	}
 
-	_, _ = io.Copy(os.Stdout, pushOut)
+	_, err = io.Copy(os.Stdout, pushOut)
+	if err != nil {
+		return nil, err
+	}
 
 	return output, nil
 }
