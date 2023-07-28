@@ -1,7 +1,7 @@
 name: 'close stale issues'
 on:
   schedule:
-    - cron: '30 9 * * *'
+    - cron: '00 10 * * *'
 
 jobs:
   stale:
@@ -14,3 +14,4 @@ jobs:
           days-before-close: 2
           days-before-pr-stale: -1
           days-before-pr-close: -1
+          operations-per-run: 1000
