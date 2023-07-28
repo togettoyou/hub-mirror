@@ -77,16 +77,13 @@ func main() {
 		panic("没有转换成功的镜像")
 	}
 
-	tmpl, err := template.New("pull_images").Parse(`{{- range . -}}
-	
-	{{if .Repository}}
-	# if your repository is private,please login...
-	# docker login {{ .Repository }} --username={your username}
-	{{end}}
-	docker pull {{ .Target }}
-	docker tag {{ .Target }} {{ .Source }}
-	
-	{{ end -}}`)
+	tmpl, err := template.New("pull_images").Parse(
+		`{{if .Repository}}# if your repository is private,please login...
+# docker login {{ .Repository }} --username={your username}
+{{end}}
+{{- range .Outputs }}
+docker pull {{ .Target }}
+docker tag {{ .Target }} {{ .Source }}{{ end }}`)
 	if err != nil {
 		panic(err)
 	}
@@ -96,9 +93,11 @@ func main() {
 	}
 	defer outputFile.Close()
 
-	err = tmpl.Execute(outputFile, outputs)
+	err = tmpl.Execute(outputFile, map[string]interface{}{
+		"Outputs":    outputs,
+		"Repository": *repository,
+	})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(outputs)
 }

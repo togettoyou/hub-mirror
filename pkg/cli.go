@@ -56,9 +56,8 @@ func NewCli(ctx context.Context, repository, username, password string) (*Cli, e
 }
 
 type Output struct {
-	Source     string
-	Target     string
-	Repository string
+	Source string
+	Target string
 }
 
 func (c *Cli) Source2Target(source string) (*Output, error) {
@@ -91,9 +90,8 @@ func (c *Cli) Source2Target(source string) (*Output, error) {
 	}
 
 	return &Output{
-		Source:     source,
-		Target:     target,
-		Repository: c.repository,
+		Source: source,
+		Target: target,
 	}, nil
 }
 
