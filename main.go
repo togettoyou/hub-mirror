@@ -40,7 +40,7 @@ func main() {
 	fmt.Printf("%+v\n", hubMirrors)
 
 	fmt.Println("初始化 Docker 客户端")
-	cli, err := pkg.NewCli(context.Background(), *repository, *username, *password)
+	cli, err := pkg.NewCli(context.Background(), *repository, *username, *password, os.Stdout)
 	if err != nil {
 		panic(err)
 	}

@@ -80,12 +80,13 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/togettoyou/hub-mirror/pkg"
 )
 
 func main() {
-	cli, err := pkg.NewCli(context.Background(), "", "xxx", "xxx")
+	cli, err := pkg.NewCli(context.Background(), "", "xxx", "xxx", os.Stdout)
 	if err != nil {
 		panic(err)
 	}

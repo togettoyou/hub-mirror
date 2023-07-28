@@ -18,9 +18,10 @@ type Cli struct {
 	repository string
 	username   string
 	auth       string
+	log        io.Writer
 }
 
-func NewCli(ctx context.Context, repository, username, password string) (*Cli, error) {
+func NewCli(ctx context.Context, repository, username, password string, log io.Writer) (*Cli, error) {
 	if username == "" || password == "" {
 		return nil, errors.New("username or password cannot be empty")
 	}
@@ -52,6 +53,7 @@ func NewCli(ctx context.Context, repository, username, password string) (*Cli, e
 		repository: repository,
 		username:   username,
 		auth:       base64.URLEncoding.EncodeToString(encodedJSON),
+		log:        log,
 	}, nil
 }
 
@@ -144,6 +146,11 @@ func (c *Cli) PullImage(ctx context.Context, image string) error {
 			}
 			return err
 		}
+
+		if c.log != nil {
+			_, _ = c.log.Write(streamBytes)
+		}
+
 		_ = json.Unmarshal(streamBytes, &e)
 		if e.Error != "" {
 			return errors.New(e.Error)
@@ -176,6 +183,11 @@ func (c *Cli) PushImage(ctx context.Context, image string) error {
 			}
 			return err
 		}
+
+		if c.log != nil {
+			_, _ = c.log.Write(streamBytes)
+		}
+
 		_ = json.Unmarshal(streamBytes, &e)
 		if e.Error != "" {
 			return errors.New(e.Error)
