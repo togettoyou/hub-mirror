@@ -1,12 +1,12 @@
 package pkg
 
 import (
+	"bufio"
 	"context"
 	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"io"
-	"os"
 	"strings"
 
 	"github.com/docker/docker/api/types"
@@ -101,17 +101,7 @@ func (c *Cli) PullTagPushImage(ctx context.Context, source string) (*Output, err
 		return nil, err
 	}
 
-	pullOut, err := c.cli.ImagePull(ctx, output.Source, types.ImagePullOptions{})
-	defer func() {
-		if pullOut != nil {
-			pullOut.Close()
-		}
-	}()
-	if err != nil {
-		return nil, err
-	}
-
-	_, err = io.Copy(os.Stdout, pullOut)
+	err = c.PullImage(ctx, output.Source)
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +111,50 @@ func (c *Cli) PullTagPushImage(ctx context.Context, source string) (*Output, err
 		return nil, err
 	}
 
-	pushOut, err := c.cli.ImagePush(ctx, output.Target, types.ImagePushOptions{
+	err = c.PushImage(ctx, output.Target)
+	if err != nil {
+		return nil, err
+	}
+
+	return output, nil
+}
+
+type errorMessage struct {
+	Error string `json:"error"`
+}
+
+func (c *Cli) PullImage(ctx context.Context, image string) error {
+	pullOut, err := c.cli.ImagePull(ctx, image, types.ImagePullOptions{})
+	defer func() {
+		if pullOut != nil {
+			pullOut.Close()
+		}
+	}()
+	if err != nil {
+		return err
+	}
+
+	var e errorMessage
+	buffIOReader := bufio.NewReader(pullOut)
+	for {
+		streamBytes, err := buffIOReader.ReadBytes('\n')
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+		_ = json.Unmarshal(streamBytes, &e)
+		if e.Error != "" {
+			return errors.New(e.Error)
+		}
+	}
+
+	return nil
+}
+
+func (c *Cli) PushImage(ctx context.Context, image string) error {
+	pushOut, err := c.cli.ImagePush(ctx, image, types.ImagePushOptions{
 		RegistryAuth: c.auth,
 	})
 	defer func() {
@@ -130,13 +163,24 @@ func (c *Cli) PullTagPushImage(ctx context.Context, source string) (*Output, err
 		}
 	}()
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	_, err = io.Copy(os.Stdout, pushOut)
-	if err != nil {
-		return nil, err
+	var e errorMessage
+	buffIOReader := bufio.NewReader(pushOut)
+	for {
+		streamBytes, err := buffIOReader.ReadBytes('\n')
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+		_ = json.Unmarshal(streamBytes, &e)
+		if e.Error != "" {
+			return errors.New(e.Error)
+		}
 	}
 
-	return output, nil
+	return nil
 }
