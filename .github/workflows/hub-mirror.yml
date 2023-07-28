@@ -4,7 +4,7 @@ name: hub-mirror
 # 当新建或者修改 issues 时，触发当前 workflow
 on:
   issues:
-    types: [ opened, edited ]
+    types: [opened, edited]
 
 # 需要执行的任务列表
 jobs:
@@ -35,20 +35,17 @@ jobs:
           script: |
             const fs = require('fs')
             const data = fs.readFileSync('output.sh', 'utf8')
-            const body = "Hello，您可以直接执行该命令：" +
+            const body = "Hello，您可以直接执行该命令：\n" +
                 "\n" +
-                "```shell" +
+                "```shell\n" +
+                "echo -e '" + data.replace(/\n/g, '\\n') + "' | bash\n" +
+                "```\n" +
                 "\n" +
-                "echo -e '" + data.replace(/\n/g, '\\n') + "' | bash"
+                "或是手动执行：\n" +
                 "\n" +
-                "```" +
-                "\n" +
-                "或是手动执行：" +
-                "\n" +
-                "```shell" +
-                "\n" +
+                "```shell\n" +
                 data +
-                "```" +
+                "```\n" +
                 "\n" +
                 "希望可以帮助到您，祝您周" + "日一二三四五六".charAt(new Date().getDay()) + "愉快！"
             github.rest.issues.createComment({
