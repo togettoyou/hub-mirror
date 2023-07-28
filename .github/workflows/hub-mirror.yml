@@ -45,6 +45,7 @@ jobs:
                 "\n" +
                 "```shell\n" +
                 data +
+                "\n" +
                 "```\n" +
                 "\n" +
                 "希望可以帮助到您，祝您周" + "日一二三四五六".charAt(new Date().getDay()) + "愉快！"
