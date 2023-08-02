@@ -91,7 +91,7 @@ func main() {
 		panic(err)
 	}
 
-	output, err := cli.PullTagPushImage(context.Background(), "hello-world:latest")
+	output, err := cli.PullTagPushImage(context.Background(), "hello-world:latest", "")
 	if err != nil {
 		panic(err)
 	}
