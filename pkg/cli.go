@@ -97,13 +97,13 @@ func (c *Cli) Source2Target(source string) (*Output, error) {
 	}, nil
 }
 
-func (c *Cli) PullTagPushImage(ctx context.Context, source string) (*Output, error) {
+func (c *Cli) PullTagPushImage(ctx context.Context, source, platform string) (*Output, error) {
 	output, err := c.Source2Target(source)
 	if err != nil {
 		return nil, err
 	}
 
-	err = c.PullImage(ctx, output.Source)
+	err = c.PullImage(ctx, output.Source, platform)
 	if err != nil {
 		return nil, err
 	}
@@ -125,8 +125,8 @@ type errorMessage struct {
 	Error string `json:"error"`
 }
 
-func (c *Cli) PullImage(ctx context.Context, image string) error {
-	pullOut, err := c.cli.ImagePull(ctx, image, types.ImagePullOptions{})
+func (c *Cli) PullImage(ctx context.Context, image, platform string) error {
+	pullOut, err := c.cli.ImagePull(ctx, image, types.ImagePullOptions{Platform: platform})
 	defer func() {
 		if pullOut != nil {
 			pullOut.Close()
