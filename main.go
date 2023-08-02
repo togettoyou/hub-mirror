@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	content    = pflag.StringP("content", "", "", "原始镜像，格式为：{ \"hub-mirror\": [] }")
+	content    = pflag.StringP("content", "", "", "原始镜像，格式为：{ \"platform\": \"\", \"hub-mirror\": [] }")
 	maxContent = pflag.IntP("maxContent", "", 11, "原始镜像个数限制")
 	repository = pflag.StringP("repository", "", "", "推送仓库地址，为空默认为 hub.docker.com")
 	username   = pflag.StringP("username", "", "", "仓库用户名")
@@ -26,8 +26,10 @@ func main() {
 
 	fmt.Println("验证原始镜像内容")
 	var hubMirrors struct {
-		Content []string `json:"hub-mirror"`
+		Content  []string `json:"hub-mirror"`
+		Platform string   `json:"platform"`
 	}
+
 	err := json.Unmarshal([]byte(*content), &hubMirrors)
 	if err != nil {
 		panic(err)
@@ -37,7 +39,7 @@ func main() {
 		panic("提交的原始镜像个数超出了最大限制")
 	}
 
-	fmt.Printf("%+v\n", hubMirrors)
+	fmt.Printf("mirrors: %+v, platform: %+v\n", hubMirrors.Content, hubMirrors.Platform)
 
 	fmt.Println("初始化 Docker 客户端")
 	cli, err := pkg.NewCli(context.Background(), *repository, *username, *password, os.Stdout)
@@ -60,7 +62,7 @@ func main() {
 		go func() {
 			defer wg.Done()
 
-			output, err := cli.PullTagPushImage(context.Background(), source)
+			output, err := cli.PullTagPushImage(context.Background(), source, hubMirrors.Platform)
 			if err != nil {
 				fmt.Println(source, "转换异常: ", err)
 				return
