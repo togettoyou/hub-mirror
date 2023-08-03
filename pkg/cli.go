@@ -113,7 +113,7 @@ func (c *Cli) PullTagPushImage(ctx context.Context, source, platform string) (*O
 		return nil, err
 	}
 
-	err = c.PushImage(ctx, output.Target)
+	err = c.PushImage(ctx, output.Target, platform)
 	if err != nil {
 		return nil, err
 	}
@@ -160,9 +160,10 @@ func (c *Cli) PullImage(ctx context.Context, image, platform string) error {
 	return nil
 }
 
-func (c *Cli) PushImage(ctx context.Context, image string) error {
+func (c *Cli) PushImage(ctx context.Context, image, platform string) error {
 	pushOut, err := c.cli.ImagePush(ctx, image, types.ImagePushOptions{
 		RegistryAuth: c.auth,
+		Platform:     platform,
 	})
 	defer func() {
 		if pushOut != nil {
