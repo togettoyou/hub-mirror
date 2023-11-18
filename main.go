@@ -9,12 +9,12 @@ import (
 	"text/template"
 
 	"github.com/spf13/pflag"
-	"github.com/togettoyou/hub-mirror/pkg"
+	"github.com/loucas-boom/hub-mirror/pkg"
 )
 
 var (
 	content    = pflag.StringP("content", "", "", "原始镜像，格式为：{ \"platform\": \"\", \"hub-mirror\": [] }")
-	maxContent = pflag.IntP("maxContent", "", 11, "原始镜像个数限制")
+	maxContent = pflag.IntP("maxContent", "", 10, "原始镜像个数限制")
 	repository = pflag.StringP("repository", "", "", "推送仓库地址，为空默认为 hub.docker.com")
 	username   = pflag.StringP("username", "", "", "仓库用户名")
 	password   = pflag.StringP("password", "", "", "仓库密码")
