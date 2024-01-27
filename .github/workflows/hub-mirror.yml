@@ -26,34 +26,20 @@ jobs:
           go-version: '1.20'
       # 3. 运行 go 代码
       - name: Run code
-        run: go run main.go --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_TOKEN }} --repository=${{ secrets.DOCKER_REPOSITORY }} --content='${{ github.event.issue.body }}' --maxContent=11 --outputPath=output.sh
-      # 4. 当成功输出 output.sh 文件时，为 issues 添加评论
+        run: go run main.go --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_TOKEN }} --repository=${{ secrets.DOCKER_REPOSITORY }} --content='${{ github.event.issue.body }}' --maxContent=11 --outputPath=output.md
+      # 4. 当成功输出 output.md 文件时，为 issues 添加评论
       - name: Add comment
-        if: ${{ hashFiles('output.sh') }}
+        if: ${{ hashFiles('output.md') }}
         uses: actions/github-script@v5
         with:
           script: |
             const fs = require('fs')
-            const data = fs.readFileSync('output.sh', 'utf8')
-            const body = "Hello，您可以直接执行该命令：\n" +
-                "\n" +
-                "```shell\n" +
-                "echo -e '" + data.replace(/\n/g, '\\n') + "' | bash\n" +
-                "```\n" +
-                "\n" +
-                "或是手动执行：\n" +
-                "\n" +
-                "```shell\n" +
-                data +
-                "\n" +
-                "```\n" +
-                "\n" +
-                "希望可以帮助到您，祝您周" + "日一二三四五六".charAt(new Date().getDay()) + "愉快！"
+            const data = fs.readFileSync('output.md', 'utf8')
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: body
+              body: data
             })
       # 5. 当以上步骤成功时，为 issues 添加 success 标签
       - name: Success issues

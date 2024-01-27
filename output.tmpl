@@ -1,0 +1,13 @@
+### docker 版本
+
+```shell
+{{- range .Outputs }}
+docker pull {{ .Target }} && docker tag {{ .Target }} {{ .Source }}{{ end }}
+```
+
+### containerd 版本（以 k8s.io namespaces 为例）
+
+```shell
+{{- range .Outputs }}
+ctr -n k8s.io image pull {{ .Target }} && ctr -n k8s.io image tag {{ .Target }} {{ .Source }}{{ end }}
+```

@@ -87,7 +87,7 @@ func (c *Cli) Source2Target(source string) (*Output, error) {
 	}
 
 	if c.repository == "" {
-		target = c.username + "/" + strings.ReplaceAll(target, "/", ".")
+		target = "docker.io/" + c.username + "/" + strings.ReplaceAll(target, "/", ".")
 	} else {
 		target = c.repository + "/" + strings.ReplaceAll(target, "/", ".")
 	}

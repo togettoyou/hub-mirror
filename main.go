@@ -18,7 +18,7 @@ var (
 	repository = pflag.StringP("repository", "", "", "推送仓库地址，为空默认为 hub.docker.com")
 	username   = pflag.StringP("username", "", "", "仓库用户名")
 	password   = pflag.StringP("password", "", "", "仓库密码")
-	outputPath = pflag.StringP("outputPath", "", "output.sh", "结果输出路径")
+	outputPath = pflag.StringP("outputPath", "", "output.md", "结果输出路径")
 )
 
 func main() {
@@ -80,13 +80,7 @@ func main() {
 		panic("没有转换成功的镜像")
 	}
 
-	tmpl, err := template.New("pull_images").Parse(
-		`{{if .Repository}}# if your repository is private,please login...
-# docker login {{ .Repository }} --username={your username}
-{{end}}
-{{- range .Outputs }}
-docker pull {{ .Target }}
-docker tag {{ .Target }} {{ .Source }}{{ end }}`)
+	tmpl, err := template.ParseFiles("output.tmpl")
 	if err != nil {
 		panic(err)
 	}
