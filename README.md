@@ -3,9 +3,12 @@
 使用 docker.io (hub.docker.com) 或其他镜像服务来提供（但不限于） gcr.io、registry.k8s.io、k8s.gcr.io、quay.io、ghcr.io
 等国外镜像加速下载服务
 
-为减少重复请求，合理利用资源，建议提前在 issues 中搜索镜像是否已转换过，可以直接复用
+最近更新：
+- 转换脚本提供 `docker`、`ctr`（containerd）命令
 
-示例：[issues搜索registry.k8s.io/kube-apiserver:v1.27.4](https://github.com/togettoyou/hub-mirror/issues?q=registry.k8s.io%2Fkube-apiserver%3Av1.27.4)
+> 为减少重复请求，合理利用资源，建议提前在 issues 中搜索镜像是否已转换过，可以直接复用
+>
+> 示例：[issues搜索registry.k8s.io/kube-apiserver:v1.27.4](https://github.com/togettoyou/hub-mirror/issues?q=registry.k8s.io%2Fkube-apiserver%3Av1.27.4)
 
 ## 原理
 
@@ -19,7 +22,7 @@
 
 ### 方案一：白嫖我的，点个 Star ，[直接提交 issues ](https://github.com/togettoyou/hub-mirror/issues/new/choose)，按照 issue 模板修改内容即可
 
-要求：严格按照模板规范提交，参考： [成功案例](https://github.com/togettoyou/hub-mirror/issues/948)
+要求：严格按照模板规范提交，参考： [成功案例](https://github.com/togettoyou/hub-mirror/issues/1813)
 
 > 当任务失败时，可以查看失败原因并直接修改 issues 的内容，即可重新触发任务执行
 
@@ -55,47 +58,3 @@
 5. 在 `Actions` 里选择 `hub-mirror` ，在右边 `···` 菜单里选择 `Enable Workflow`
 
 6. 在 Fork 的项目中提交 issues
-
-### 方案三：已有魔法，支持本地使用（好像用不着）
-
-```shell
-$ go install github.com/togettoyou/hub-mirror@latest
-```
-
-```shell
-$ hub-mirror --username=xxxxxx --password=xxxxxx --content='{ "hub-mirror": ["hello-world:latest"] }'
-# 如果需要使用自定义镜像仓库
-$ hub-mirror --username=xxxxxx --password=xxxxxx --repository=registry.cn-hangzhou.aliyuncs.com/xxxxxx --content='{ "hub-mirror": ["hello-world:latest"] }'
-```
-
-### 方案四：作为库使用（貌似没什么用）
-
-```shell
-$ go get github.com/togettoyou/hub-mirror@latest
-```
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-
-	"github.com/togettoyou/hub-mirror/pkg"
-)
-
-func main() {
-	cli, err := pkg.NewCli(context.Background(), "", "xxx", "xxx", os.Stdout)
-	if err != nil {
-		panic(err)
-	}
-
-	output, err := cli.PullTagPushImage(context.Background(), "hello-world:latest", "")
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(output.Source, " ===> ", output.Target)
-}
-```
