@@ -27,6 +27,12 @@ func TestSource2Target(t *testing.T) {
 	assert.Equal(t, source, output.Source)
 	assert.Equal(t, "docker.io/togettoyou/registry.k8s.io.kube-apiserver:v1.27.4", output.Target)
 
+	source = "registry.k8s.io/kube-apiserver$kube-apiserver"
+	output, err = cli.Source2Target(source)
+	assert.Nil(t, err)
+	assert.Equal(t, "registry.k8s.io/kube-apiserver", output.Source)
+	assert.Equal(t, "docker.io/togettoyou/kube-apiserver", output.Target)
+
 	source = "registry.k8s.io/kube-apiserver:v1.27.4$kube-apiserver"
 	output, err = cli.Source2Target(source)
 	assert.Nil(t, err)
@@ -43,7 +49,7 @@ func TestSource2Target(t *testing.T) {
 	output, err = cli.Source2Target(source)
 	assert.Nil(t, err)
 	assert.Equal(t, "nginx@sha256:123456", output.Source)
-	assert.Equal(t, "docker.io/togettoyou/nginx", output.Target)
+	assert.Equal(t, "docker.io/togettoyou/nginx:123456", output.Target)
 
 	source = "nginx@sha256:123456$nginx:mytag"
 	output, err = cli.Source2Target(source)

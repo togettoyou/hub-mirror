@@ -78,8 +78,7 @@ func (c *Cli) Source2Target(source string) (*Output, error) {
 		}
 	}
 
-	if !strings.Contains(target, ":") &&
-		!strings.Contains(source, "@sha256") && strings.Contains(source, ":") {
+	if !strings.Contains(target, ":") && strings.Contains(source, ":") {
 		parts := strings.Split(source, ":")
 		if len(parts) > 1 {
 			target += ":" + parts[1]
