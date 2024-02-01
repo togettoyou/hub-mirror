@@ -6,6 +6,8 @@
 最近更新：
 
 - 转换脚本提供 `docker`、`ctr`（containerd）命令
+- 支持切换 arm
+  架构，参考：[默认架构](https://github.com/togettoyou/hub-mirror/issues/1827) 、 [arm架构](https://github.com/togettoyou/hub-mirror/issues/1828)
 
 为减少重复请求，合理利用资源，建议提前在 issues 中搜索镜像是否已转换过
 
@@ -23,7 +25,7 @@
 
 #### 用法一：白嫖我的，点个 Star ，[直接提交 issues ](https://github.com/togettoyou/hub-mirror/issues/new/choose)，按照 issue 模板修改内容即可
 
-要求：严格按照模板规范提交，参考： [成功案例](https://github.com/togettoyou/hub-mirror/issues/1813)
+要求：严格按照模板规范提交，参考： [成功案例](https://github.com/togettoyou/hub-mirror/issues/1829)
 
 > 当任务失败时，可以查看失败原因并直接修改 issues 的内容，即可重新触发任务执行
 
