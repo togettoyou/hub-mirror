@@ -4,9 +4,11 @@
 
 使用国内镜像仓库来提供（但不限于） docker.io、gcr.io、registry.k8s.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
 
-## 试用（不保证可用）
+示例：https://github.com/togettoyou/hub-mirror/issues/2816
 
-[直接提交 issues ](https://github.com/togettoyou/hub-mirror/issues/new/choose)，按照 issue 模板修改内容即可
+## 试用
+
+[直接在我的项目中提交 issues ](https://github.com/togettoyou/hub-mirror/issues/new/choose)，按照 issue 模板修改内容即可
 
 > 个人配置的是阿里云个人实例镜像仓库，仓库限额为 300 ，所以有可能出现上传或拉取失败的情况（本人会不定时清理历史仓库
 
@@ -16,13 +18,15 @@
 
 1. 绑定账号
 
-   在 `Settings`-`Secrets and variables`-`Actions` 选择 `New repository secret` 新建 `DOCKER_USERNAME`（镜像仓库用户名）
+   在 `Settings`-`Secrets and variables`-`Actions` 选择 `New repository secret` 新建 `DOCKER_USERNAME`（镜像仓库登录名）
    和 `DOCKER_TOKEN`（镜像仓库密码）以及 `DOCKER_REPOSITORY` 三个 Secrets
 
    其中 `DOCKER_REPOSITORY` 配置例子：
 
-     - 腾讯云: `ccr.ccs.tencentyun.com/[username]`
-     - 阿里云: `registry.cn-hangzhou.aliyuncs.com/[username]`
+     - 腾讯云: `ccr.ccs.tencentyun.com/[namespace]`
+     - 阿里云: `registry.cn-hangzhou.aliyuncs.com/[namespace]`
+   
+   例如我的是：`registry.cn-hangzhou.aliyuncs.com/hubmirrorbytogettoyou`
 
 2. 开启 `Settings`-`General`-`Features` 中的 `Issues` 功能
 
