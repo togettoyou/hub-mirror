@@ -27,13 +27,16 @@
      - 阿里云: `registry.cn-hangzhou.aliyuncs.com/[namespace]`
    
    例如我的是：`registry.cn-hangzhou.aliyuncs.com/hubmirrorbytogettoyou`
+   
+   ![image](https://github.com/user-attachments/assets/5af044b7-f62e-401c-976f-a8556964b995)
 
-2. 开启 `Settings`-`General`-`Features` 中的 `Issues` 功能
 
-3. 修改 `Settings`-`Actions`-`General` 中的 `Workflow permissions` 为 `Read and write permissions`
+3. 开启 `Settings`-`General`-`Features` 中的 `Issues` 功能
 
-4. 在 `Issues`-`Labels` 选择 `New label` 依次添加三个 label ：`hub-mirror`、`success`、`failure`
+4. 修改 `Settings`-`Actions`-`General` 中的 `Workflow permissions` 为 `Read and write permissions`
 
-5. 在 `Actions` 里选择 `hub-mirror` ，在右边 `···` 菜单里选择 `Enable Workflow`
+5. 在 `Issues`-`Labels` 选择 `New label` 依次添加三个 label ：`hub-mirror`、`success`、`failure`
 
-6. 在 Fork 的项目中提交 issues
+6. 在 `Actions` 里选择 `hub-mirror` ，在右边 `···` 菜单里选择 `Enable Workflow`
+
+7. 在 Fork 的项目中提交 issues
