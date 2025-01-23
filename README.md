@@ -1,18 +1,20 @@
-<img src="https://user-images.githubusercontent.com/55381228/221747734-13783ce6-1969-4c10-acd6-833f5046aa85.png" width="300px">
-
 ## hub-mirror
 
 使用国内镜像仓库来提供（但不限于） docker.io、gcr.io、registry.k8s.io、k8s.gcr.io、quay.io、ghcr.io 等国外镜像加速下载服务
 
 示例：https://github.com/togettoyou/hub-mirror/issues/2816
 
-## 试用
+## 开始使用
 
-[直接在我的项目中提交 issues ](https://github.com/togettoyou/hub-mirror/issues/new/choose)，按照 issue 模板修改内容即可
+[提交 issues](https://github.com/togettoyou/hub-mirror/issues/new/choose)，按照 issue 模板内容修改即可
 
 > 个人配置的是阿里云个人实例镜像仓库，仓库限额为 300 ，所以有可能出现上传或拉取失败的情况（本人会不定时清理历史仓库
 
-## 开始使用
+<img src="https://github.com/user-attachments/assets/ea93572c-6c05-4751-bde7-35a58fe083f1" width="520" alt="gopher云原生公众号二维码">
+
+👆 扫码或搜索关注公众号：**gopher云原生**
+
+## 自行搭建
 
 #### Fork 本项目（可设为私有），绑定你自己的国内镜像仓库
 
