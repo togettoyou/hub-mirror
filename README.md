@@ -8,13 +8,11 @@
 
 [提交 issues](https://github.com/togettoyou/hub-mirror/issues/new/choose)，按照 issue 模板内容修改即可
 
-> 个人配置的是阿里云个人实例镜像仓库，仓库限额为 300 ，所以有可能出现上传或拉取失败的情况（本人会不定时清理历史仓库
-
 <img src="https://github.com/user-attachments/assets/ea93572c-6c05-4751-bde7-35a58fe083f1" width="520" alt="gopher云原生公众号二维码">
 
 👆 扫码或搜索关注公众号：**gopher云原生**
 
-## 自行搭建
+## 具体使用流程
 
 #### Fork 本项目（可设为私有），绑定你自己的国内镜像仓库
 
