@@ -32,6 +32,8 @@
 
 🔹 **示例截图**  
 
+![阿里云镜像仓库](https://github.com/user-attachments/assets/6d7f3fda-cc8c-40dd-adf8-627a704c8533)
+
 ![Secrets 配置示例](https://github.com/user-attachments/assets/13010521-13b2-4c55-83d6-50956e039434)
 
 
